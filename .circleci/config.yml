@@ -6,3 +6,19 @@ jobs:
       - image: circleci/php:7.2-apache-node-browsers
       - image: circleci/mysql:5.7
         command: [--max_allowed_packet=32M]
+
+test:
+    working_directory: ~/circleci-php
+    docker:
+      - image: "circleci/php7.2"
+    steps:
+      - checkout
+      - run: sp_insertar.php
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
