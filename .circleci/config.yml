@@ -10,10 +10,10 @@ jobs:
 test:
     working_directory: ~/circleci-php
     docker:
-      - image: "circleci/php7.2"
+      - image: "circleci/php:7.2-apache-node-browsers"
     steps:
       - checkout
-      - run: sp_insertar.php
+      - run: php sp_insertar.php
 
 workflows:
   build_and_test:
